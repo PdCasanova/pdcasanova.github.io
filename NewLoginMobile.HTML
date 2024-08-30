@@ -1,0 +1,134 @@
+<html><head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Puratos Login Page</title>
+	<style> 
+	@font-face {
+    font-family: 'Sansa';
+    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Sansa.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	@font-face {
+    font-family: 'Century Gothic';
+    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/centurygothic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	@font-face {
+    font-family: 'Century Gothic';
+    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Karmina%20Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body, html{
+		font-family:  'Sansa', 'Century Gothic', 'Karmina';
+	}
+	
+	  label {
+		display:none;
+	  }
+	  
+	  input {
+			border:none;
+			font-weight: bold;
+			font-family:  'Sansa', 'Century Gothic', 'Karmina';
+			padding: 10px;
+			width:80%;
+			border-radius: 5px;
+			margin-top:10px;
+			::placeholder : rgb(209,0,52);
+	  }
+	  
+	  input:focus{
+		outline: #DCDCDC auto 5px;
+	  }
+	  
+	  #next{
+		  padding: 10px;
+		  width:90%;
+		  color:white;
+		  font-weight: bold;
+		  font-family:  'Sansa', 'Century Gothic', 'Karmina';
+		  background-color: rgb(209,0,52);
+		  margin-top: 20px;
+		  border-radius:5px;
+		  border:none;
+	  }
+	  
+	  #forgotPassword {
+		display:none;
+	  }
+	  
+	  .divider{
+		display:none;
+	  }
+	  
+	  .create{
+		display:none;
+	  }
+	  .error{
+		background-color: rgb(230,15,15);
+		border-radius:5px;
+		margin-left: 10px;
+		margin-right: 10px;
+	  }
+	  
+	  body {
+		max-width: 100%;
+		margin: auto;
+		text-align: center;
+		background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/BackGround.jpg?raw=true") ;
+		color:white;
+		height:100%;
+		background-position: center;
+  		background-repeat: no-repeat;
+  		background-size: cover;
+	  }
+		
+	#layer {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	}
+	body, html {
+  		height: 100%;
+  		overflow: hidden;
+	}
+	
+	#logo {
+    height:50px;
+	position:relative;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/PuratosUnicorn_RedRGB1600x1600.png?raw=true");
+	}
+	
+	#api {
+		margin-top: 70px;
+	}
+	
+	@media only screen and (max-height: 400px){
+		#logo {
+			display: none;
+	}
+	
+	
+		
+	  </style>
+   </head>
+   <body> 
+   
+	<div id="layer">
+	   <div id="logo"> </div>
+	   <div id="api"></div>
+	</div>
+
+   
+</body></html>
