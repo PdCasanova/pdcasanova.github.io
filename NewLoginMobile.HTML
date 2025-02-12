@@ -1,140 +1,111 @@
-<html><head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Puratos Login Page</title>
-	<style> 
-	@font-face {
-    font-family: 'Sansa';
-    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Sansa.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-	}
-	
-	@font-face {
-    font-family: 'Century Gothic';
-    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/centurygothic.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-	}
-	
-	@font-face {
-    font-family: 'Karmina';
-    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Karmina%20Regular.otf");
-    font-weight: normal;
-    font-style: normal;
-	}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puratos Login Page</title>
+    <style>
+        /* General Styles */
+        body, html {
+            font-family: Arial, sans-serif;
+        }
 
-	h1{
-		font-family:  'Sansa', 'Century Gothic', 'Karmina';
-		font-size:20px;
-	}
-	
-	body, html{
-		font-family:  'Sansa', 'Century Gothic', 'Karmina';
-	}
-	
-	  label {
-		display:none;
-	  }
-	  
-	  input {
-			border: 1px black;
-			font-weight: bold;
-			height:30px;
-			font-family:  'Sansa', 'Century Gothic', 'Karmina';
-			padding: 10px;
-			width:80%;
-			border-radius: 25px;
-			margin-top:10px;
-			::placeholder : rgb(209,0,52);
-	  }
-	  
-	  input:focus{
-		outline: #DCDCDC auto 5px;
-	  }
-	  
-	  #next{
-		  padding: 10px;
-		  width:85%;
-		  color:white;
-		  font-weight: bold;
-		  font-family:  'Sansa', 'Century Gothic', 'Karmina';
-		  background-color: rgb(209,0,52);
-		  margin-top: 20px;
-		  border-radius:25px;
-		  border:1px black;
-	  }
-	  
-	  #forgotPassword {
-		display:none;
-	  }
-	  
-	  .divider{
-		display:none;
-	  }
-	  
-	  .create{
-		display:none;
-	  }
-	  .error{
-		background-color: rgb(230,15,15);
-		border-radius:5px;
-		margin-left: 10px;
-		margin-right: 10px;
-	  }
-	  
-	  body {
-		max-width: 100%;
-		margin: auto;
-		text-align: center;
-		background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/BackGround.jpg?raw=true") ;
-		color:black;
-		height:100%;
-		background-position: center;
-  		background-repeat: no-repeat;
-  		background-size: cover;
-	  }
-		
-	#layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-	}
-	body, html {
-  		height: 100%;
-  		overflow: hidden;
-	}
-	
-	#logo {
-    height:50px;
-	position:relative;
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/PuratosUnicorn_RedRGB1600x1600.png?raw=true");
-	}
-	
-	#api {
-		transform: translateY(50%);
-		margin-top: 70px;
-	}
-	
-	@media only screen and (max-height: 400px){
-		#logo {
-			display: none;
-	}
-	
-	
-		
-	  </style>
-   </head>
-   <body> 
-   
-	<div id="layer">
-	   <div id="logo"> </div>
-	   <div id="api"></div>
-	</div>
+        h1 {
+            font-size: 20px;
+        }
 
-   
-</body></html>
+        body {
+            max-width: 100%;
+            margin: auto;
+            text-align: center;
+            background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/BackGround.jpg?raw=true");
+            color: black;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #logo {
+            height: 50px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/PuratosUnicorn_RedRGB1600x1600.png?raw=true");
+            margin-bottom: 20px;
+        }
+
+        #api {
+            width: 300px; 
+            background: rgba(255, 255, 255, 0.8); 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        #api input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 25px;
+            border: 1px solid black;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #next {
+            padding: 10px;
+            width: 95%;
+            color: white;
+            font-weight: bold;
+            background-color: rgb(209, 0, 52);
+            margin-top: 10px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Ensure Azure's forgot password link is visible and properly positioned */
+        a[href*="forgot"] {
+            display: block !important;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: rgb(209, 0, 52);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-height: 400px) {
+            #logo {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="layer">
+        <div id="logo"></div>
+        <div id="api">
+            <h1>Login</h1>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <button id="next">Login</button>
+        </div>
+    </div>
+</body>
+</html>
