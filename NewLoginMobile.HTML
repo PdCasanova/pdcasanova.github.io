@@ -1,151 +1,140 @@
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Puratos Login Page</title>
-    <style> 
-        @font-face {
-            font-family: 'Sansa';
-            src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Sansa.ttf") format("truetype");
-            font-weight: normal;
-            font-style: normal;
-        }
+<html><head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Puratos Login Page</title>
+	<style> 
+	@font-face {
+    font-family: 'Sansa';
+    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Sansa.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	@font-face {
+    font-family: 'Century Gothic';
+    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/centurygothic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	@font-face {
+    font-family: 'Karmina';
+    src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Karmina%20Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+	}
 
-        @font-face {
-            font-family: 'Century Gothic';
-            src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/centurygothic.ttf") format("truetype");
-            font-weight: normal;
-            font-style: normal;
-        }
+	h1{
+		font-family:  'Sansa', 'Century Gothic', 'Karmina';
+		font-size:20px;
+	}
+	
+	body, html{
+		font-family:  'Sansa', 'Century Gothic', 'Karmina';
+	}
+	
+	  label {
+		display:none;
+	  }
+	  
+	  input {
+			border: 1px black;
+			font-weight: bold;
+			height:30px;
+			font-family:  'Sansa', 'Century Gothic', 'Karmina';
+			padding: 10px;
+			width:80%;
+			border-radius: 25px;
+			margin-top:10px;
+			::placeholder : rgb(209,0,52);
+	  }
+	  
+	  input:focus{
+		outline: #DCDCDC auto 5px;
+	  }
+	  
+	  #next{
+		  padding: 10px;
+		  width:85%;
+		  color:white;
+		  font-weight: bold;
+		  font-family:  'Sansa', 'Century Gothic', 'Karmina';
+		  background-color: rgb(209,0,52);
+		  margin-top: 20px;
+		  border-radius:25px;
+		  border:1px black;
+	  }
+	  
+	  #forgotPassword {
+		display:none;
+	  }
+	  
+	  .divider{
+		display:none;
+	  }
+	  
+	  .create{
+		display:none;
+	  }
+	  .error{
+		background-color: rgb(230,15,15);
+		border-radius:5px;
+		margin-left: 10px;
+		margin-right: 10px;
+	  }
+	  
+	  body {
+		max-width: 100%;
+		margin: auto;
+		text-align: center;
+		background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/BackGround.jpg?raw=true") ;
+		color:black;
+		height:100%;
+		background-position: center;
+  		background-repeat: no-repeat;
+  		background-size: cover;
+	  }
+		
+	#layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	}
+	body, html {
+  		height: 100%;
+  		overflow: hidden;
+	}
+	
+	#logo {
+    height:50px;
+	position:relative;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/PuratosUnicorn_RedRGB1600x1600.png?raw=true");
+	}
+	
+	#api {
+		transform: translateY(50%);
+		margin-top: 70px;
+	}
+	
+	@media only screen and (max-height: 400px){
+		#logo {
+			display: none;
+	}
+	
+	
+		
+	  </style>
+   </head>
+   <body> 
+   
+	<div id="layer">
+	   <div id="logo"> </div>
+	   <div id="api"></div>
+	</div>
 
-        @font-face {
-            font-family: 'Karmina';
-            src: url("https://github.com/DBACarvalho/WebSite/blob/dd0ae32e359d3bf8ee67e5f16f89638a54d8709b/Karmina%20Regular.otf");
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        h1 {
-            font-family: 'Sansa', 'Century Gothic', 'Karmina';
-            font-size: 20px;
-        }
-
-        body, html {
-            font-family: 'Sansa', 'Century Gothic', 'Karmina';
-            height: 100%;
-            overflow: hidden;
-            max-width: 100%;
-            margin: auto;
-            text-align: center;
-            background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/BackGround.jpg?raw=true");
-            color: black;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        label {
-            display: none;
-        }
-
-        input {
-            border: 1px solid black;
-            font-weight: bold;
-            height: 30px;
-            padding: 10px;
-            width: 80%;
-            border-radius: 25px;
-            margin-top: 10px;
-        }
-
-        input:focus {
-            outline: #DCDCDC auto 5px;
-        }
-
-        #next {
-            padding: 10px;
-            width: 85%;
-            color: white;
-            font-weight: bold;
-            background-color: rgb(209, 0, 52);
-            margin-top: 40px !important; /* Pushes the login button down */
-            border-radius: 25px;
-            border: 1px solid black;
-        }
-
-        /* Ensure Forgot Password is properly positioned */
-        #forgotPassword {
-            display: block !important; /* Make sure it's visible */
-            text-align: center;
-            font-size: 14px;
-            color: rgb(209, 0, 52); /* Match button color */
-            text-decoration: none; /* Remove underline */
-            font-weight: bold;
-            margin-top: 10px; /* Space between login button and forgot password */
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Move Forgot Password below the password input */
-        input[type="password"] + #forgotPassword {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -30px; /* Moves it below the password field */
-        }
-
-        .divider, .create {
-            display: none;
-        }
-
-        .error {
-            background-color: rgb(230, 15, 15);
-            border-radius: 5px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        #layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        #logo {
-            height: 50px;
-            position: relative;
-            background-position: right;
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/PuratosUnicorn_RedRGB1600x1600.png?raw=true");
-        }
-
-        #api {
-            transform: translateY(50%);
-            margin-top: 70px;
-        }
-
-        @media only screen and (max-height: 400px) {
-            #logo {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body> 
-    <div id="layer">
-        <div id="logo"></div>
-
-        <div id="api">
-            <h1>Login</h1>
-
-            <input type="text" placeholder="Email" id="email">
-            <br>
-            <input type="password" placeholder="Password" id="password">
-            <br>
-            <button id="next">Login</button>
-        </div>
-    </div>
-</body>
-</html>
+   
+</body></html>
