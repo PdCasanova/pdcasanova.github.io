@@ -79,16 +79,19 @@
             cursor: pointer;
         }
 
-        /* Ensure Azure's forgot password link is visible and properly positioned */
-        a[href*="forgot"] {
-            display: block !important;
+        /* Ensure Forgot Password link is correctly positioned */
+    #forgotPassword {
+            display: block !important; /* Make sure it's visible */
             text-align: center;
-            margin-top: 10px;
+            margin-top: 10px; /* Add space below the login button */
             font-size: 14px;
-            color: rgb(209, 0, 52);
-            text-decoration: none;
+            color: rgb(209, 0, 52); /* Match button color */
+            text-decoration: none; /* Remove underline */
             font-weight: bold;
+            position: relative;
+            z-index: 2;
         }
+
 
         @media only screen and (max-height: 400px) {
             #logo {
