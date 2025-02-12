@@ -45,13 +45,7 @@
             margin-bottom: 20px;
         }
 
-        #api {
-            width: 300px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+       
 
         input {
             width: 90%;
@@ -63,6 +57,30 @@
             text-align: center;
         }
 
+               #api {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #forgotPassword {
+            display: block;
+            margin-top: 15px; /* Ensure a gap between the button and the link */
+            text-align: center;
+            color: rgb(209, 0, 52); /* Match the button color */
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        #forgotPassword:hover {
+            text-decoration: underline; /* Optional: Add underline on hover */
+        }
+        
         #next {
             padding: 10px;
             width: 95%;
@@ -75,9 +93,6 @@
             cursor: pointer;
         }
 
-        #forgotPassword {
-            display:block;
-        }
 
         @media only screen and (max-height: 400px) {
             #logo {
@@ -95,7 +110,6 @@
             <input type="password" placeholder="Password">
             <button id="next">Login</button>
         </div>
-            <a id="forgotPassword"></a>
     </div>
 </body>
 </html>
