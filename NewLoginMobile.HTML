@@ -35,17 +35,24 @@
             font-size: 20px;
         }
 
-        body {
-            max-width: 100%;
-            margin: auto;
-            text-align: center;
-            background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/BackGround.jpg?raw=true");
-            color: black;
-            height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+	body {
+	    max-width: 100%;
+	    margin: auto;
+	    text-align: center;
+	    background-image: url("https://github.com/DBACarvalho/WebSite/blob/main/BackGround.jpg?raw=true");
+	    color: black;
+	    height: 100%;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover; /* Ensures the background image covers the whole screen */
+	}
+	
+	@media only screen and (max-width: 600px) {
+	    body {
+	        background-size: contain; /* Ensures the background image is contained within the screen */
+	        background-position: center center; /* Centers the background image */
+	    }
+	}
 
         label {
 		display:none;
