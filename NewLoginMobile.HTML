@@ -97,8 +97,7 @@
         }
         
         #forgotPassword {
-	    display: block;!important
-	    margin-top: 20px;!important
+	    margin-top: 20px;
 	    text-align: center;
 	    font-weight: bold;
 	    color: rgb(209, 0, 52);
@@ -130,16 +129,24 @@
 	 display:none;
 	}
 
+	.entry{
+	display:grid;
+	}
+
+	.entry-item.entry{
+	display:grid;
+	}
+
+	password-label.entry-item.entry{
+	order:1;
+	}
+
     </style>
 </head>
 <body>
     <div id="layer">
         <div id="logo"></div>
-        <div id="api">
-            <div class="entry-item">
-                <input type="password" id="password" placeholder="Password">
-            </div>
-            <a id="forgotPassword" href="#">Forgot your password?</a>
+        <div id="api"></div>
             <button id="next">Sign In</button>
         </div>
     </div>
