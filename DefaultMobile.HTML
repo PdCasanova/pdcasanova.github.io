@@ -11,30 +11,36 @@
             content: url(https://mypuratos.b2clogin.com/static/tenant/templates/images/left-arrow.svg);
         }
     </style>
-    <style id="idpselector">
-        #SignInWithLogonNameExchange, #SignUpWithLogonEmailExchange, #SignUpWithLogonNameExchange {
-            background-image: url(https://mypuratos.b2clogin.com/static/tenant/templates/idp_logos/colored/local.svg);
-        }
-        #SignInWithLogonNameExchange:hover, #SignUpWithLogonEmailExchange:hover, #SignUpWithLogonNameExchange:hover {
-            background-image: url(https://mypuratos.b2clogin.com/static/tenant/templates/idp_logos/white/local.svg);
-        }
-        #SignUpWithLogonEmailExchange.text-link {
-            background-image: none;
-            background-color: transparent !important;
-        }
-        #SignUpWithLogonEmailExchange.text-link:hover {
-            background-image: none;
-            background-color: transparent !important;
-        }
-    </style>
 
     <style>
-        /* Following are generated styles via gulp. */
-        /* inject: css */
+        
+        @font-face {
+	    font-family: 'Sansa';
+	    src: url("https://raw.githubusercontent.com/DBACarvalho/WebSite/main/Sansa.ttf") format("truetype");
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	@font-face {
+	    font-family: 'Century Gothic';
+	    src: url("https://raw.githubusercontent.com/DBACarvalho/WebSite/main/centurygothic.ttf") format("truetype");
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	@font-face {
+	    font-family: 'Karmina';
+	    src: url("https://raw.githubusercontent.com/DBACarvalho/WebSite/main/Karmina%20Regular.otf") format("opentype");
+	    font-weight: normal;
+	    font-style: normal;
+	}
+
         html
-            {background:0 0}
+            {background:0 0;
+            font-family: 'Century Gothic','Sansa','Karmina';
+            }
         body
-            {font-family:Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;background-attachment:fixed;background-color:#fff;background-position:center;background-repeat:no-repeat;background-size:cover;text-align:left;font:-apple-system-body}
+            {font-family: 'Century Gothic','Sansa','Karmina';background-attachment:fixed;background-color:#fff;background-position:center;background-repeat:no-repeat;background-size:cover;text-align:left;font:-apple-system-body}
 
             p{margin:0}a{text-decoration:underline;text-decoration-thickness:1px}a:focus{outline:0;border:2px solid #000}
 
