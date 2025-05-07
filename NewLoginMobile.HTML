@@ -163,35 +163,34 @@
         </div>
     </div>
 	<script>
-	  function goBack() {
-	    if (document.referrer && document.referrer !== location.href) {
-	      window.history.back();
-	    } else {
-	      window.location.href = "https://tua-url-de-fallback.com";
-	    }
-	  }
-	
-	  window.addEventListener('load', function () {
-	    var apiDiv = document.getElementById('api');
-	    if (apiDiv && !document.getElementById('back')) {
-	      var backBtn = document.createElement('button');
-	      backBtn.id = 'back';
-	      backBtn.innerText = 'Back';
-	      backBtn.onclick = goBack;
-	      backBtn.style.padding = '10px 20px';
-	      backBtn.style.marginBottom = '10px';
-	      backBtn.style.color = 'rgb(209, 0, 52)';
-	      backBtn.style.fontWeight = 'bold';
-	      backBtn.style.backgroundColor = 'white';
-	      backBtn.style.border = '2px solid rgb(209, 0, 52)';
-	      backBtn.style.borderRadius = '25px';
-	      backBtn.style.cursor = 'pointer';
-	      backBtn.style.alignSelf = 'flex-start';
-	
-	      apiDiv.insertBefore(backBtn, apiDiv.firstChild);
-	    }
-  });
-</script>
+		  document.addEventListener('DOMContentLoaded', function () {
+		    // Verifica se a div #api existe
+		    var apiDiv = document.getElementById('api');
+		    if (apiDiv) {
+		      // Cria o botão "Back"
+		      var backBtn = document.createElement('button');
+		      backBtn.id = 'back';
+		      backBtn.innerText = 'Back';
+		      backBtn.onclick = function () {
+		        window.history.back();
+		      };
+		
+		      // Estiliza o botão
+		      backBtn.style.padding = '10px 20px';
+		      backBtn.style.marginBottom = '10px';
+		      backBtn.style.color = 'rgb(209, 0, 52)';
+		      backBtn.style.fontWeight = 'bold';
+		      backBtn.style.backgroundColor = 'white';
+		      backBtn.style.border = '2px solid rgb(209, 0, 52)';
+		      backBtn.style.borderRadius = '25px';
+		      backBtn.style.cursor = 'pointer';
+		      backBtn.style.alignSelf = 'flex-start';
+		
+		      // Insere o botão no início da div #api
+		      apiDiv.insertBefore(backBtn, apiDiv.firstChild);
+		    }
+		  });
+	</script>
 
 </body>
 </html>
