@@ -160,18 +160,27 @@
     <div id="layer">
         <div id="logo"></div>
         <div id="api">
-		<button id="back" onclick="goBack()">Back</button>
         </div>
     </div>
+	      <script>
+  function goBack() {
+    if (document.referrer && document.referrer !== location.href) {
+      window.history.back();
+    } else {
+      window.location.href = "https://tua-url-de-fallback.com";
+    }
+  }
 
-	<script>
-	      function goBack() {
-	        if (document.referrer && document.referrer !== location.href) {
-	          window.history.back();
-	        } else {
-	          window.location.href = "https://google.com";
-	        }
-	      }
-	    </script>
+	  window.addEventListener('load', function() {
+	    var apiDiv = document.getElementById('api');
+	    if (apiDiv) {
+	      var backBtn = document.createElement('button');
+	      backBtn.id = 'back';
+	      backBtn.innerText = 'Back';
+	      backBtn.onclick = goBack;
+	      apiDiv.insertBefore(backBtn, apiDiv.firstChild);
+	    }
+  	});
+	</script>
 </body>
 </html>
