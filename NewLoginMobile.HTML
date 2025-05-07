@@ -180,7 +180,7 @@
 	        alignSelf: 'flex-start',
 	      });
 	
-	      buttons.insertBackButton();
+	      buttons.insertBefore(backBtn, buttons.firstChild);
 	      clearInterval(waitForApi); // Para de verificar
 	    }
 	  }
