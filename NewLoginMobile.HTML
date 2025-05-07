@@ -172,10 +172,10 @@
 	}
 
 	  function insertBackButton() {
-	    const apiDiv = document.getElementById('api');
+	    const buttons = document.getElementById('buttons');
 	
 	    
-	    if (apiDiv && !document.getElementById('back')) {
+	    if (buttons && !document.getElementById('back')) {
 	      const backBtn = document.createElement('button');
 	      backBtn.id = 'back';
 	      backBtn.innerText = 'Back';
@@ -194,7 +194,7 @@
 	        alignSelf: 'flex-start',
 	      });
 	
-	      apiDiv.insertBefore(backBtn, apiDiv.firstChild);
+	      apiDiv.insertBefore(backBtn, buttons.firstChild);
 	      clearInterval(waitForApi); // Para de verificar
 	    }
 	  }
