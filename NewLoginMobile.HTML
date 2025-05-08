@@ -177,8 +177,6 @@ function insertPasswordToggle() {
     wrapper.style.width = "100%";
 
     // Move input inside wrapper
-    passwordInput.style.flex = "1";
-    passwordInput.style.paddingRight = "2.5em"; // ensure room for icon
     passwordInput.parentNode.insertBefore(wrapper, passwordInput);
     wrapper.appendChild(passwordInput);
 
