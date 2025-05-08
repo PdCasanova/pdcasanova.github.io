@@ -148,53 +148,6 @@
         <div id="api">
         </div>
     </div>
-	<script src="https://cdn.jsdelivr.net/gh/PdCasanova/pdcasanova.github.io/custom-back-button.js?v=3.0"></script>
-	<script> 
-		(function setupPasswordToggle() {
-		    const passwordInput = document.getElementById("password");
-		
-		    if (!passwordInput) return;
-		
-		    // Create the button
-		    const toggleBtn = document.createElement("button");
-		    toggleBtn.type = "button";
-		    toggleBtn.id = "togglePassword";
-		    toggleBtn.setAttribute("aria-label", "Show password");
-		    toggleBtn.style.background = "none";
-		    toggleBtn.style.border = "none";
-		    toggleBtn.style.cursor = "pointer";
-		    toggleBtn.style.position = "absolute";
-		    toggleBtn.style.right = "10px";
-		    toggleBtn.style.top = "50%";
-		    toggleBtn.style.transform = "translateY(-50%)";
-		    toggleBtn.style.padding = "0";
-		
-		    // Inject SVG icon into the button
-		    toggleBtn.innerHTML = `
-		        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20" height="20" viewBox="0 0 442.04 442.04">
-		            <path d="M221.02,341.304c..."/> <!-- Paste full path(s) here -->
-		        </svg>
-		    `;
-		
-		    // Wrap the password input to allow relative positioning
-		    const wrapper = document.createElement("div");
-		    wrapper.style.position = "relative";
-		    passwordInput.parentNode.insertBefore(wrapper, passwordInput);
-		    wrapper.appendChild(passwordInput);
-		    wrapper.appendChild(toggleBtn);
-		
-		    // Toggle password visibility
-		    toggleBtn.addEventListener("click", function () {
-		        const isHidden = passwordInput.type === "password";
-		        passwordInput.type = isHidden ? "text" : "password";
-		
-		        // Optional: visual feedback
-		        const eyeIcon = toggleBtn.querySelector("#eyeIcon");
-		        if (eyeIcon) {
-		            eyeIcon.style.fill = isHidden ? "#0078D4" : "#000";
-		        }
-		    });
-		})();
-	</script>
+	<script src="https://cdn.jsdelivr.net/gh/PdCasanova/pdcasanova.github.io/customChanges.js?v=3.1"></script>
 </body>
 </html>
