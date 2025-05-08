@@ -149,7 +149,7 @@
         </div>
     </div>
 	<script>
-		function goBack() {
+	function goBack() {
 		  if (document.referrer && document.referrer !== location.href) {
 		    window.history.back();
 		  } else {
@@ -157,15 +157,14 @@
 		  }
 		}
 		
-		function insertBackButton() {
+		function insertBackIcon() {
 		  const apiContainer = document.getElementById('api');
 		
-		  // Only proceed if the container exists and no back button yet
-		  if (apiContainer && !document.getElementById('back')) {
-		    const backBtn = document.createElement('button');
-		    backBtn.id = 'back';
-		    backBtn.type = 'button';
-		    backBtn.onclick = goBack;
+		  // Only proceed if the container exists and no back icon yet
+		  if (apiContainer && !document.getElementById('backIcon')) {
+		    const backIcon = document.createElement('div');
+		    backIcon.id = 'backIcon';
+		    backIcon.onclick = goBack;
 		
 		    // SVG markup for the back arrow
 		    const svg = `
@@ -173,25 +172,20 @@
 		        <polygon points="45.268,1.414 43.854,0 14.146,29.707 43.854,59.414 45.268,58 16.975,29.707"/>
 		      </svg>
 		    `;
-		    backBtn.innerHTML = svg; // Insert the SVG as the button content
+		    backIcon.innerHTML = svg; // Insert the SVG as the content
 		
-		    // Styling similar to the original button, adjust as needed
-		    Object.assign(backBtn.style, {
-		      padding: '10px',
-		      width: '50px', // Adjust size to fit the SVG better
-		      marginBottom: '20px',
-		      backgroundColor: 'white',
-		      border: '2px solid rgb(209, 0, 52)',
-		      borderRadius: '25px',
+		    // Styling for the SVG icon
+		    Object.assign(backIcon.style, {
 		      cursor: 'pointer',
-		      display: 'flex',
-		      justifyContent: 'center',  // Center the SVG inside the button
-		      alignItems: 'center',      // Center the SVG inside the button
-		      height: '50px',            // Adjust height to match width and create a square button
+		      display: 'inline-block',
+		      marginBottom: '20px',
+		      padding: '10px',
+		      width: '50px',  // Adjust size to fit the icon properly
+		      height: '50px',
 		    });
 		
 		    // Insert at the beginning of #api container
-		    apiContainer.insertBefore(backBtn, apiContainer.firstChild);
+		    apiContainer.insertBefore(backIcon, apiContainer.firstChild);
 		
 		    console.log('Version 0.1');
 		
@@ -200,7 +194,7 @@
 		}
 		
 		// Check every 300ms until #api container is available
-		const waitForApiContainer = setInterval(insertBackButton, 300);
+		const waitForApiContainer = setInterval(insertBackIcon, 300);
 	</script>
 </body>
 </html>
