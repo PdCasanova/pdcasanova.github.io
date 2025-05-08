@@ -37,6 +37,7 @@
 
       // Insert it as the first child of #api
       apiDiv.insertBefore(backBtn, apiDiv.firstChild);
+      console.log('version 0.1');
 
       clearInterval(waitForBackBtnInsert);
     }
