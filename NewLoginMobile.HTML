@@ -165,20 +165,29 @@
 		    const backBtn = document.createElement('button');
 		    backBtn.id = 'back';
 		    backBtn.type = 'button';
-		    backBtn.innerText = 'Back';
 		    backBtn.onclick = goBack;
 		
-		    // Styling similar to original, adjust if needed
+		    // SVG markup for the back arrow
+		    const svg = `
+		      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#209052" height="30px" width="30px" version="1.1" id="Capa_1" viewBox="0 0 59.414 59.414" xml:space="preserve">
+		        <polygon points="45.268,1.414 43.854,0 14.146,29.707 43.854,59.414 45.268,58 16.975,29.707"/>
+		      </svg>
+		    `;
+		    backBtn.innerHTML = svg; // Insert the SVG as the button content
+		
+		    // Styling similar to the original button, adjust as needed
 		    Object.assign(backBtn.style, {
 		      padding: '10px',
-		      width: '95%',
+		      width: '50px', // Adjust size to fit the SVG better
 		      marginBottom: '20px',
-		      color: 'rgb(209, 0, 52)',
-		      fontWeight: 'bold',
 		      backgroundColor: 'white',
 		      border: '2px solid rgb(209, 0, 52)',
 		      borderRadius: '25px',
 		      cursor: 'pointer',
+		      display: 'flex',
+		      justifyContent: 'center',  // Center the SVG inside the button
+		      alignItems: 'center',      // Center the SVG inside the button
+		      height: '50px',            // Adjust height to match width and create a square button
 		    });
 		
 		    // Insert at the beginning of #api container
