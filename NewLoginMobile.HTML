@@ -249,12 +249,12 @@ function insertBackButton() {
     `;
 
     Object.assign(backIcon.style, {
-      position: "absolute",
-      top: "10px",
-      left: "10px",
-      zIndex: "1000",
-      cursor: "pointer"
-    });
+  position: "absolute",
+  top: "calc(env(safe-area-inset-top, 0px) + 20px)",
+  left: "calc(env(safe-area-inset-left, 0px) + 20px)",
+  zIndex: "1000",
+  cursor: "pointer"
+	});
 
     document.body.appendChild(backIcon);
   }
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         subtree: true
       });
 
-      console.log('👁️ MutationObserver attached – version 1.1');
+      console.log('👁️ MutationObserver attached – version 1.4');
     } else {
       setTimeout(tryAttachObserver, 200);
     }
@@ -309,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   tryAttachObserver();
 });
-	// Version 1.0.3
 
 	</script>
 </body>
