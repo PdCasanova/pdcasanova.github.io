@@ -148,6 +148,137 @@
         <div id="api">
         </div>
     </div>
-	<script src="https://cdn.jsdelivr.net/gh/PdCasanova/pdcasanova.github.io/customLayoutChanges.js?v=3.3"></script>
+	<script>
+					/**
+		 * Handles navigation for custom back button logic.
+		 */
+		function goBack() {
+		  if (document.referrer && document.referrer !== location.href) {
+		    window.history.back();
+		  } else {
+		    window.location.href = "_CLOSE_THIS_THING";
+		  }
+		}
+		
+		/**
+		 * Adds show/hide password toggle next to the password input.
+		 */
+		function insertPasswordToggle() {
+		  const passwordInput = document.getElementById("password");
+		
+		  if (passwordInput && !document.getElementById("togglePassword")) {
+		    const wrapper = document.createElement("div");
+		    wrapper.style.display = "flex";
+		    wrapper.style.alignItems = "center";
+		    wrapper.style.position = "relative";
+		    wrapper.style.width = "100%";
+		
+		    passwordInput.parentNode.insertBefore(wrapper, passwordInput);
+		    wrapper.appendChild(passwordInput);
+		
+		    const toggleBtn = document.createElement("button");
+		    toggleBtn.type = "button";
+		    toggleBtn.id = "togglePassword";
+		    toggleBtn.setAttribute("aria-label", "Toggle password visibility");
+		
+		    Object.assign(toggleBtn.style, {
+		      background: "none",
+		      border: "none",
+		      cursor: "pointer",
+		      padding: "0",
+		      marginLeft: "-2em",
+		      display: "flex",
+		      alignItems: "center",
+		      justifyContent: "center",
+		      height: "100%"
+		    });
+		
+		    toggleBtn.innerHTML = `
+		      <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="#000" width="1.2em" height="1.2em" viewBox="0 0 442.04 442.04">
+		        <g>
+		          <path d="..."/> <!-- (your SVG paths trimmed for brevity) -->
+		        </g>
+		      </svg>
+		    `;
+		
+		    wrapper.appendChild(toggleBtn);
+		
+		    toggleBtn.addEventListener("click", () => {
+		      const isHidden = passwordInput.type === "password";
+		      passwordInput.type = isHidden ? "text" : "password";
+		
+		      const eyeIcon = toggleBtn.querySelector("#eyeIcon");
+		      if (eyeIcon) {
+		        eyeIcon.style.fill = isHidden ? "#0078D4" : "#000";
+		      }
+		    });
+		  }
+		}
+		
+		/**
+		 * Injects the back button outside the main container and initializes password toggle.
+		 */
+		function insertBackIcon() {
+		  if (!document.getElementById("backIcon")) {
+		    const backIcon = document.createElement("div");
+		    backIcon.id = "backIcon";
+		    backIcon.onclick = goBack;
+		
+		    backIcon.innerHTML = `
+		      <svg xmlns="http://www.w3.org/2000/svg" fill="#333" height="24px" width="24px" viewBox="0 0 59.414 59.414">
+		        <polygon points="45.268,1.414 43.854,0 14.146,29.707 43.854,59.414 45.268,58 16.975,29.707"/>
+		      </svg>
+		    `;
+		
+		    Object.assign(backIcon.style, {
+		      position: "fixed",
+		      top: "16px",
+		      left: "16px",
+		      cursor: "pointer",
+		      zIndex: "1000"
+		    });
+		
+		    const container = document.getElementById("container") || document.getElementById("api");
+		    if (container?.parentNode) {
+		      container.parentNode.insertBefore(backIcon, container);
+		    } else {
+		      document.body.insertBefore(backIcon, document.body.firstChild);
+		    }
+		
+		    insertPasswordToggle();
+		
+		    if (waitForApiContainer) clearInterval(waitForApiContainer);
+		    if (observerInstance) {
+		      observerInstance.disconnect();
+		      console.log("🔌 Observer disconnected");
+		    }
+		  }
+		}
+		
+		// Polling fallback
+		let waitForApiContainer = setInterval(insertBackIcon, 300);
+		
+		// Observer-based fallback
+		let observerInstance = null;
+		
+		document.addEventListener("DOMContentLoaded", () => {
+		  const tryAttachObserver = () => {
+		    const container = document.getElementById("container");
+		    if (container) {
+		      observerInstance = new MutationObserver(() => {
+		        insertBackIcon();
+		      });
+		
+		      observerInstance.observe(container, { childList: true, subtree: true });
+		      console.log("👁️ MutationObserver attached - version 0.1");
+		    } else {
+		      setTimeout(tryAttachObserver, 200);
+		    }
+		  };
+		
+		  tryAttachObserver();
+		});
+
+	</script>
 </body>
 </html>
