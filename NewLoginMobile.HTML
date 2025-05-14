@@ -151,17 +151,19 @@
 	<script>
 /**
  * Handles navigation for custom back button logic.
+ * Navigates back if there's a valid referrer, otherwise triggers a fallback event.
  */
 function goBack() {
   if (document.referrer && document.referrer !== location.href) {
     window.history.back();
   } else {
+    // Trigger fallback event (e.g., Outsystems)
     window.location.href = "_CLOSE_THIS_THING";
   }
 }
 
 /**
- * Injects a show/hide password toggle button with your original eye SVG.
+ * Injects a show/hide password toggle button with a clear eye icon.
  */
 function insertPasswordToggle() {
   const passwordInput = document.getElementById("password");
@@ -193,26 +195,10 @@ function insertPasswordToggle() {
       height: "100%"
     });
 
-    // ✅ Your original SVG exactly as provided
     toggleBtn.innerHTML = `
-      <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="#000000" width="1.2em" height="1.2em" viewBox="0 0 442.04 442.04">
-        <g>
-          <g>
-            <path d="M221.02,341.304c-49.708,0-103.206-19.44-154.71-56.22C27.808,257.59,4.044,230.351,3.051,229.203
-              c-4.068-4.697-4.068-11.669,0-16.367c0.993-1.146,24.756-28.387,63.259-55.881c51.505-36.777,105.003-56.219,154.71-56.219
-              c49.708,0,103.207,19.441,154.71,56.219c38.502,27.494,62.266,54.734,63.259,55.881c4.068,4.697,4.068,11.669,0,16.367
-              c-0.993,1.146-24.756,28.387-63.259,55.881C324.227,321.863,270.729,341.304,221.02,341.304z"/>
-          </g>
-          <g>
-            <path d="M221.02,298.521c-42.734,0-77.5-34.767-77.5-77.5c0-42.733,34.766-77.5,77.5-77.5
-              c18.794,0,36.924,6.814,51.048,19.188c5.193,4.549,5.715,12.446,1.166,17.639c-4.549,5.193-12.447,5.714-17.639,1.166
-              c-9.564-8.379-21.844-12.993-34.576-12.993c-28.949,0-52.5,23.552-52.5,52.5s23.551,52.5,52.5,52.5
-              c28.95,0,52.5-23.552,52.5-52.5c0-6.903,5.597-12.5,12.5-12.5s12.5,5.597,12.5,12.5C298.521,263.754,263.754,298.521,221.02,298.521z"/>
-          </g>
-          <g>
-            <path d="M221.02,246.021c-13.785,0-25-11.215-25-25s11.215-25,25-25c13.786,0,25,11.215,25,25S234.806,246.021,221.02,246.021z"/>
-          </g>
-        </g>
+      <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="none" viewBox="0 0 24 24" stroke="#000" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.522 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7s-8.268-2.943-9.542-7z"/>
       </svg>
     `;
 
@@ -224,67 +210,54 @@ function insertPasswordToggle() {
 
       const eyeIcon = toggleBtn.querySelector("#eyeIcon");
       if (eyeIcon) {
-        eyeIcon.style.fill = isHidden ? "#0078D4" : "#000";
+        eyeIcon.setAttribute("stroke", isHidden ? "#0078D4" : "#000");
       }
     });
   }
 }
 
 /**
- * Waits for the password input to exist, then adds the toggle.
- */
-function waitForPasswordInput() {
-  const tryInsert = () => {
-    if (document.getElementById("password")) {
-      insertPasswordToggle();
-    } else {
-      setTimeout(tryInsert, 200);
-    }
-  };
-  tryInsert();
-}
-
-/**
- * Adds the back icon to the top-left of the page and triggers the toggle logic.
+ * Injects the custom back icon before the layer container and triggers password toggle setup.
  */
 function insertBackIcon() {
-  if (!document.getElementById("backIcon")) {
+  const apiContainer = document.getElementById("api");
+  const container = document.getElementById("container");
+
+  if (container && !document.getElementById("backIcon")) {
     const backIcon = document.createElement("div");
     backIcon.id = "backIcon";
     backIcon.onclick = goBack;
 
     backIcon.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" fill="#333" height="24px" width="24px" viewBox="0 0 59.414 59.414">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#333" height="20px" width="20px" viewBox="0 0 59.414 59.414">
         <polygon points="45.268,1.414 43.854,0 14.146,29.707 43.854,59.414 45.268,58 16.975,29.707"/>
       </svg>
     `;
 
-    Object.assign(backIcon.style, {
-      position: "fixed",
-      top: "16px",
-      left: "16px",
-      cursor: "pointer",
-      zIndex: "1000"
-    });
+    backIcon.style.position = "absolute";
+    backIcon.style.top = "10px";
+    backIcon.style.left = "10px";
+    backIcon.style.cursor = "pointer";
+    backIcon.style.zIndex = "999";
 
-    const container = document.getElementById("container") || document.getElementById("api");
-    if (container?.parentNode) {
-      container.parentNode.insertBefore(backIcon, container);
-    } else {
-      document.body.insertBefore(backIcon, document.body.firstChild);
-    }
+    document.body.appendChild(backIcon);
 
-    waitForPasswordInput();
+    // Inject password toggle (after DOM settles)
+    insertPasswordToggle();
 
+    // Cleanup
     if (waitForApiContainer) clearInterval(waitForApiContainer);
-    if (observerInstance) observerInstance.disconnect();
+    if (observerInstance) {
+      observerInstance.disconnect();
+      console.log("🔌 Observer disconnected");
+    }
   }
 }
 
 // Polling fallback
 let waitForApiContainer = setInterval(insertBackIcon, 300);
 
-// MutationObserver setup
+// Observer for DOM changes
 let observerInstance = null;
 
 document.addEventListener("DOMContentLoaded", () => {
