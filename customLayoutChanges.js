@@ -6,8 +6,7 @@ function goBack() {
   if (document.referrer && document.referrer !== location.href) {
     window.history.back();
   } else {
-    // Trigger fallback event (e.g., Outsystems)
-    window.location.href = "_CLOSE_THIS_THING";
+    window.location.href = "_CLOSE_THIS_THING"; // Fallback
   }
 }
 
@@ -18,35 +17,32 @@ function insertPasswordToggle() {
   const passwordInput = document.getElementById("password");
 
   if (passwordInput && !document.getElementById("togglePassword")) {
-    // Create wrapper and apply flex layout
     const wrapper = document.createElement("div");
     wrapper.style.display = "flex";
     wrapper.style.alignItems = "center";
     wrapper.style.position = "relative";
     wrapper.style.width = "100%";
 
-    // Move input inside wrapper
     passwordInput.parentNode.insertBefore(wrapper, passwordInput);
     wrapper.appendChild(passwordInput);
 
-    // Create toggle button
     const toggleBtn = document.createElement("button");
     toggleBtn.type = "button";
     toggleBtn.id = "togglePassword";
     toggleBtn.setAttribute("aria-label", "Toggle password visibility");
+
     Object.assign(toggleBtn.style, {
       background: "none",
       border: "none",
       cursor: "pointer",
       padding: "0",
-      marginLeft: "-2em",  // pulls icon inside input border area
+      marginLeft: "-2em",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       height: "100%"
     });
 
-    // Inline SVG (scaled with font size)
     toggleBtn.innerHTML = `
       <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="#000000" width="1.2em" height="1.2em" viewBox="0 0 442.04 442.04">
         <g>
@@ -74,7 +70,6 @@ function insertPasswordToggle() {
 
     wrapper.appendChild(toggleBtn);
 
-    // Toggle input type and icon color
     toggleBtn.addEventListener("click", () => {
       const isHidden = passwordInput.type === "password";
       passwordInput.type = isHidden ? "text" : "password";
@@ -88,62 +83,66 @@ function insertPasswordToggle() {
 }
 
 /**
- * Injects the custom back icon into the B2C `#api` container, and triggers password toggle setup.
+ * Injects a back button (positioned top-left) independently from the password toggle.
  */
-function insertBackIcon() {
-  const apiContainer = document.getElementById("api");
-
-  // Only proceed if container exists and icon isn't already inserted
-  if (apiContainer && !document.getElementById("backIcon")) {
-    // Create back button
+function insertBackButton() {
+  if (!document.getElementById("backIcon")) {
     const backIcon = document.createElement("div");
     backIcon.id = "backIcon";
     backIcon.onclick = goBack;
 
-    // Inline SVG for back arrow
-    const svg = `
+    backIcon.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" fill="#333" height="20px" width="20px" viewBox="0 0 59.414 59.414">
         <polygon points="45.268,1.414 43.854,0 14.146,29.707 43.854,59.414 45.268,58 16.975,29.707"/>
       </svg>
     `;
 
-    backIcon.innerHTML = svg;
-    backIcon.style.width = "100%";
-    backIcon.style.textAlign = "start";
+    Object.assign(backIcon.style, {
+  position: "absolute",
+  top: "calc(env(safe-area-inset-top, 0px) + 20px)",
+  left: "calc(env(safe-area-inset-left, 0px) + 20px)",
+  zIndex: "1000",
+  cursor: "pointer"
+	});
 
-    // Insert at the top of the container
-    apiContainer.insertBefore(backIcon, apiContainer.firstChild);
-
-    // Inject the password toggle
-    insertPasswordToggle();
-
-    // Cleanup: stop polling, disconnect observer
-    if (waitForApiContainer) clearInterval(waitForApiContainer);
-    if (observerInstance) {
-      observerInstance.disconnect();
-      console.log('🔌 Observer disconnected');
-    }
+    document.body.appendChild(backIcon);
   }
 }
 
 /**
- * Fallback polling in case DOM is delayed.
- * Will stop once `insertBackIcon()` succeeds.
+ * Combined logic to inject both UI elements and handle observers.
  */
-let waitForApiContainer = setInterval(insertBackIcon, 300);
+function initializeCustomUI() {
+  insertBackButton();      // now detached and always top-left
+  insertPasswordToggle();  // stays next to password field
+
+  if (waitForApiContainer) clearInterval(waitForApiContainer);
+  if (observerInstance) {
+    observerInstance.disconnect();
+    console.log('🔌 Observer disconnected');
+  }
+}
 
 /**
- * MutationObserver alternative to polling: watches for DOM changes to trigger injection.
+ * Polling fallback in case DOM is delayed.
+ */
+let waitForApiContainer = setInterval(() => {
+  const apiReady = document.getElementById("api") || document.getElementById("container");
+  if (apiReady) initializeCustomUI();
+}, 300);
+
+/**
+ * MutationObserver for robustness.
  */
 let observerInstance = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   const tryAttachObserver = () => {
-    const container = document.getElementById('container');
+    const container = document.getElementById("container");
 
     if (container) {
       observerInstance = new MutationObserver(() => {
-        insertBackIcon();
+        initializeCustomUI();
       });
 
       observerInstance.observe(container, {
@@ -151,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         subtree: true
       });
 
-      console.log('👁️ MutationObserver attached - version 0.1');
+      console.log('👁️ MutationObserver attached – version 1.4');
     } else {
       setTimeout(tryAttachObserver, 200);
     }
