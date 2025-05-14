@@ -149,7 +149,7 @@
         </div>
     </div>
 	<script>
-		/**
+/**
  * Handles navigation for custom back button logic.
  */
 function goBack() {
@@ -161,7 +161,7 @@ function goBack() {
 }
 
 /**
- * Adds show/hide password toggle next to the password input.
+ * Injects a show/hide password toggle button with your original eye SVG.
  */
 function insertPasswordToggle() {
   const passwordInput = document.getElementById("password");
@@ -193,8 +193,9 @@ function insertPasswordToggle() {
       height: "100%"
     });
 
+    // ✅ Your original SVG exactly as provided
     toggleBtn.innerHTML = `
-      <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="#000" width="1.2em" height="1.2em" viewBox="0 0 442.04 442.04">
+      <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="#000000" width="1.2em" height="1.2em" viewBox="0 0 442.04 442.04">
         <g>
           <g>
             <path d="M221.02,341.304c-49.708,0-103.206-19.44-154.71-56.22C27.808,257.59,4.044,230.351,3.051,229.203
@@ -230,12 +231,11 @@ function insertPasswordToggle() {
 }
 
 /**
- * Waits for the password input before injecting the toggle button.
+ * Waits for the password input to exist, then adds the toggle.
  */
 function waitForPasswordInput() {
   const tryInsert = () => {
-    const passwordInput = document.getElementById("password");
-    if (passwordInput) {
+    if (document.getElementById("password")) {
       insertPasswordToggle();
     } else {
       setTimeout(tryInsert, 200);
@@ -245,7 +245,7 @@ function waitForPasswordInput() {
 }
 
 /**
- * Inserts the custom back button in the top-left, outside the container.
+ * Adds the back icon to the top-left of the page and triggers the toggle logic.
  */
 function insertBackIcon() {
   if (!document.getElementById("backIcon")) {
@@ -274,21 +274,17 @@ function insertBackIcon() {
       document.body.insertBefore(backIcon, document.body.firstChild);
     }
 
-    // Wait for password input to exist
     waitForPasswordInput();
 
     if (waitForApiContainer) clearInterval(waitForApiContainer);
-    if (observerInstance) {
-      observerInstance.disconnect();
-      console.log("🔌 Observer disconnected");
-    }
+    if (observerInstance) observerInstance.disconnect();
   }
 }
 
-// Fallback polling
+// Polling fallback
 let waitForApiContainer = setInterval(insertBackIcon, 300);
 
-// DOM mutation observer
+// MutationObserver setup
 let observerInstance = null;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -313,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tryAttachObserver();
 });
-//test
 
 	</script>
 </body>
